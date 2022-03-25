@@ -11,7 +11,7 @@ import me.angles.kinggen.requests.Endpoint;
 import me.angles.kinggen.requests.RequestUtil;
 
 public class KingGen {
-    public static final String BASE_PATH = "https://kinggen.wtf/api/v2/%s?key=%s";        //vv exclude fields without SerializedName annotation vv
+    public static final String BASE_ROUTE = "https://kinggen.wtf/api/v2/%s?key=%s";        //vv exclude fields without SerializedName annotation vv
     public static final Gson gson = new GsonBuilder().addDeserializationExclusionStrategy(new FieldExclusionStrategy()).create();
 
     private final String apiKey;
