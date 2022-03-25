@@ -22,7 +22,6 @@ public class RequestUtil {
             connection.setRequestMethod("GET");
             checkResponseCode(connection);
             final String response = readStream(connection.getInputStream());
-            System.out.println(response);
             connection.disconnect();
             return gson.fromJson(response, type);
         } catch (IOException exception) {
