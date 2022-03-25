@@ -16,7 +16,7 @@ public static void main(String[] args) {
   KingGen kingGen = new KingGen("your-api-key");
 
   //If you (for some unknown reason) want to fetch the user profile every time an account is generated, you can do this:
-  kingGen.alwaysFetch() //method chaining is supported
+  kingGen.alwaysFetch(); //method chaining is supported
   //this will make the wrapper always fetch user info before generating an account.
   
   //Generating an account
