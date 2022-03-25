@@ -1,5 +1,5 @@
 # kinggen-java
-A Java wrapper for the KingGen API.
+A simple Java wrapper (or, rather the Java implementation of https://github.com/KingAlts/KingGenCSharp) for the KingGen API.
 
 # Dependencies
 This project requires Java 8+.
