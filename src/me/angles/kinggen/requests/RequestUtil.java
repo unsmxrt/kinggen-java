@@ -1,6 +1,7 @@
 package me.angles.kinggen.requests;
 
 import me.angles.kinggen.KingGen;
+import me.angles.kinggen.data.Error;
 import me.angles.kinggen.exceptions.InvalidApiKeyException;
 
 import java.io.BufferedReader;
@@ -22,8 +23,13 @@ public class RequestUtil {
             connection.setRequestMethod("GET");
             checkResponseCode(connection);
             final String response = readStream(connection.getInputStream());
-            System.out.println(response);
             connection.disconnect();
+
+            final Error error = gson.fromJson(response, Error.class);
+            if(error != null && error.getMessage() != null) {
+                throw new RuntimeException(error.getMessage());
+            }
+
             return gson.fromJson(response, type);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
