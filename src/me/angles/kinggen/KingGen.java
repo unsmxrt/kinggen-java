@@ -52,10 +52,10 @@ public class KingGen {
         if(this.alwaysFetch || this.userProfile == null)
             this.fetchUserProfile();
 
-        this.getUserProfile().accountGenerated();
-
         final Account account = RequestUtil.fetch(Endpoint.ACCOUNT, apiKey, Account.class);
         if(account == null) throw new OutOfStockException();
+
+        this.getUserProfile().accountGenerated(); //increment generated and generatedToday
         return account;
     }
 }
