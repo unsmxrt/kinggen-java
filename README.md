@@ -38,15 +38,14 @@ public static void main(String[] args) {
 # Handling errors
   There are three types of exceptions that can be thrown, all of which are located in `me.angles.kinggen.exceptions`:
   
-    > `KingGenException`, thrown when the API has returned an error that's not covered by the other exceptions 
-                        (for example: this is exception thrown when you try to generate an alt but you've reached the daily limit. Has no cause.)
-    another example is when the request to the API has failed and an IOException was thrown. 
+    > KingGenException, thrown when the API has returned an error that's not covered by the other exceptions described below. 
+                        (for example: this is exception thrown when you try to generate an alt but you've reached the daily limit.)
+                        another example is when the request to the API has failed and an IOException was thrown. 
     Then KingGenException will have a cause that is the IOException.   
     
-    > `OutOfStockException`, thrown when there is no stock.
+    > OutOfStockException, thrown when you attempt to generate an account, but there is no stock.
 
-    > `InvalidAPIKeyException`, thrown when you passed an invalid key to the KingGen object.
-
+    > InvalidAPIKeyException, thrown when you pass an invalid API key to the KingGen object and attempt to make a request to the API.
 
 # Getting an API key
 To get an API key, simply navigate to https://kinggen.wtf/ and click Login in the top-right and authenticate with Discord. 
