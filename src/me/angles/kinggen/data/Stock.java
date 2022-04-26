@@ -13,4 +13,9 @@ public class Stock {
     public int getAmount() {
         return this.amount;
     }
+
+    @Override
+    public String toString() { //so that you don't have to always call getStock()
+        return String.valueOf(amount);
+    }
 }

@@ -5,8 +5,8 @@ import com.google.gson.GsonBuilder;
 import me.angles.kinggen.data.Account;
 import me.angles.kinggen.data.Stock;
 import me.angles.kinggen.data.UserProfile;
-import me.angles.kinggen.exceptions.InvalidApiKeyException;
-import me.angles.kinggen.exceptions.OutOfStockException;
+import me.angles.kinggen.exceptions.impl.InvalidApiKeyException;
+import me.angles.kinggen.exceptions.impl.OutOfStockException;
 import me.angles.kinggen.requests.Endpoint;
 import me.angles.kinggen.requests.RequestUtil;
 

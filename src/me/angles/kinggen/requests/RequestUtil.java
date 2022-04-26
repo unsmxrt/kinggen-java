@@ -2,7 +2,8 @@ package me.angles.kinggen.requests;
 
 import me.angles.kinggen.KingGen;
 import me.angles.kinggen.data.Error;
-import me.angles.kinggen.exceptions.InvalidApiKeyException;
+import me.angles.kinggen.exceptions.impl.InvalidApiKeyException;
+import me.angles.kinggen.exceptions.KingGenException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,18 +22,19 @@ public class RequestUtil {
             final URL url = new URL(format(KingGen.BASE_ROUTE, endpoint.getName(), apiKey));
             final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            checkResponseCode(connection);
-            final String response = readStream(connection.getInputStream());
+                                    //reading input stream won't work when a response code other than 2xx is received,
+                                    //but we still need to read the json to get the error message, so we want to read the error stream instead
+            final String response = isBadResponseCode(connection) ? readStream(connection.getErrorStream()) : readStream(connection.getInputStream());
             connection.disconnect();
 
             final Error error = gson.fromJson(response, Error.class);
             if(error != null && error.getMessage() != null) {
-                throw new RuntimeException(error.getMessage());
+                throw new KingGenException(error.getMessage());
             }
 
             return gson.fromJson(response, type);
         } catch (IOException exception) {
-            throw new RuntimeException(exception);
+            throw new KingGenException("An uncaught exception was thrown!", exception);
         }
     }
 
@@ -49,8 +51,9 @@ public class RequestUtil {
         return builder.toString();
     }
 
-    private static void checkResponseCode(HttpURLConnection connection) throws IOException {
+    private static boolean isBadResponseCode(HttpURLConnection connection) throws IOException {
         final int code = connection.getResponseCode();
         if(code == 401) throw new InvalidApiKeyException(); //401 - unauthorized, returned with an invalid api key
+        return code < 100 || code > 399;
     }
 }

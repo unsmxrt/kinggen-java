@@ -1,7 +1,7 @@
 package me.angles.kinggen.data;
 
 import com.google.gson.annotations.SerializedName;
-import me.angles.kinggen.exceptions.OutOfStockException;
+import me.angles.kinggen.exceptions.impl.OutOfStockException;
 
 public class Account {
     @SerializedName("email")
