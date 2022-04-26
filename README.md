@@ -41,7 +41,7 @@ public static void main(String[] args) {
     > KingGenException, thrown when the API has returned an error that's not covered by the other exceptions described below. 
                         (for example: this is exception thrown when you try to generate an alt but you've reached the daily limit.)
                         another example is when the request to the API has failed and an IOException was thrown. 
-    Then KingGenException will have a cause that is the IOException.   
+                        Then KingGenException will have a cause that is the IOException.   
     
     > OutOfStockException, thrown when you attempt to generate an account, but there is no stock.
 
